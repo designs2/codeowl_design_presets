@@ -36,9 +36,6 @@
             "sources":{
                 "TL_ROOT/system/modules/codeowl_design_presets": "system/modules/codeowl_design_presets"
             },
-         "userfiles": {
-            "TL_ROOT/files/theme": "themes"
-        },
         "branch-alias": {
                     "dev-master": "1.0.0"
                 }
