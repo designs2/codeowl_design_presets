@@ -70,6 +70,11 @@ class PresetsModel extends \Model
          $optionsArr['-'] = '-';
           $i = 1; 
          foreach ($Presets as $preset) {
+            // for blank install
+            if ($preset['show_in_sections']=='') {
+              continue;
+            }
+
            if(in_array($this->getKey(),unserialize($preset['show_in_sections']))){
             $optionsArr[$preset['id']]= $preset['name'];
           $i++;
@@ -90,19 +95,22 @@ class PresetsModel extends \Model
          $presetsArr['-'] = '-';
           $i = 1; 
          foreach ($Presets as $preset) {
+            // for blank install
+            if ($preset->show_in_sections=='') {
+              continue;
+            }
            if(in_array($this->getKey(),unserialize($preset->show_in_sections))){
             $presetsArr[$preset->id]= $preset;
           $i++;
            }
           }
-
+        
           return $presetsArr;
       
      }
      public function isValToSetDefault($val,$dc)
       {   
-          //var_dump($field,$dc->$field,$val);
-          // exit;
+          
           if ($dc->$field=='-'&&$val == '-') { return true; }
           $objPreset  = PresetsModel::findByID($val);
           if ($objPreset === Null) { return true; }
