@@ -1,0 +1,175 @@
+<div id="co_select_<?php echo $this->selectFieldId; ?>"  data-co-select-name="<?php echo $this->selectFieldName; ?>" data-co-select-id="<?php echo $this->selectFieldId; ?>" class="co_dropdown_container closed transition_all">
+	<div class="co_overlay transition_overlay closed" data-co-modal="">&nbsp;</div>
+	<p class="co_note"><?php echo $GLOBALS['TL_LANG']['MSC']['co_presets_wizard']['dropdown']['note'];?> </p>
+<ul>
+	<li class="transition_bg reset<?php echo ($this->activePreset=='-')? ' active"':'';?>" id="co_select_<?php echo $this->selectFieldId; ?>_-">
+		<div class="co_image reset-btn" data-co-select-value="-">
+			<span class="text"><?php echo $GLOBALS['TL_LANG']['MSC']['co_presets_wizard']['reset']['name']; ?></span>
+		</div>
+		<div class="co_info"><h4><?php echo $GLOBALS['TL_LANG']['MSC']['co_presets_wizard']['reset']['name']; ?></h4>
+			<p><?php echo $this->defaultPresetClass; ?></p>
+		</div>
+		<span class="co_help transition_bg">?</span>
+		<div class="co_help_modal closed" data-co-modal="-" id="co_modal_<?php echo $this->selectFieldId; ?>_-">
+			<span title="Close" class="co_help_modal_close"><span>close</span></span>
+			<div class="co_help_modal_left_container">&nbsp;</div>
+			<div class="co_help_modal_right_container">
+				<h2 class="co_help_modal_name"><?php echo $GLOBALS['TL_LANG']['MSC']['co_presets_wizard']['reset']['name']; ?></h2>
+				<p class="co_help_modal_description"><?php echo $GLOBALS['TL_LANG']['MSC']['co_presets_wizard']['reset']['description']; ?></p>
+				<p class="co_help_modal_class"><?php echo $this->defaultPresetClass; ?></p>
+			</div>
+		</div>
+	</li>
+
+<?php foreach($this->arrPresets as $id => $Preset): ?>
+	<?php if($id=='-'){continue;} ?>
+	<li class="transition_bg<?php echo ($id==$this->activePreset)? ' active':'';?>" id="co_select_<?php echo $this->selectFieldId; ?>_<?php echo $id; ?>">
+		<div class="co_image" data-co-select-value="<?php echo $id;?>">
+			<img src="<?php echo $Preset['image']['path']; ?>" alt="<?php echo $Preset['name']; ?>" width="<?php echo $Preset['image']['width']; ?>" height="<?php echo $Preset['image']['height']; ?>">
+		
+		</div>
+		<div class="co_info"><h4><?php echo $Preset['name']; ?></h4>
+			<p><?php echo $Preset['class']; ?></p>
+		</div>
+		<span class="co_help transition_bg" title="<?php echo $id;?>">?</span>
+		<div class="co_help_modal closed" data-co-modal="<?php echo $id; ?>" id="co_modal_<?php echo $this->selectFieldId; ?>_<?php echo $id; ?>">
+			<span title="Close" class="co_help_modal_close"><span>close</span></span>
+			<div class="co_help_modal_left_container"><img src="<?php echo $Preset['image']['path']; ?>" width="200" height="150" alt="<?php echo $Preset['name']; ?>"></div>
+			<div class="co_help_modal_right_container">
+				<h2 class="co_help_modal_name"><?php echo $Preset['name']; ?></h2>
+				<p class="co_help_modal_description"><?php echo $Preset['description']; ?></p>
+				<p class="co_help_modal_class"><?php echo $Preset['class']; ?></p>
+			</div>
+		</div>
+	</li>
+
+<?php endforeach; ?>
+</ul>
+<script>
+function co_select() {
+// start http://jaketrent.com/post/addremove-classes-raw-javascript/
+function hasClass(ele,cls) {
+  return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+  if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+  if (hasClass(ele,cls)) {
+    var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+    ele.className=ele.className.replace(reg,' ');
+  }
+}
+// end http://jaketrent.com/post/addremove-classes-raw-javascript/
+function closeModal() {	
+	var _item = this;
+	var currentItemHelpModal 	= _item.parentNode;
+	if (hasClass(currentItemHelpModal,"co_dropdown_container")) {
+		//get the right modal
+		var dataCurrentModal 	= _item.getAttribute("data-co-modal");
+		currentItemHelpModal 	=  document.getElementById('co_modal_<?php echo $this->selectFieldId; ?>_' + dataCurrentModal);
+		_item.parentNode.setAttribute("data-co-modal","");
+	}
+	if (hasClass(currentItemHelpModal,"open")) {	
+		addClass(currentItemHelpModal,"closed");
+		removeClass(currentItemHelpModal,"open");
+
+	}
+	
+	var selectOverlay = document.getElementById('co_select_<?php echo $this->selectFieldId; ?>').getElementsByClassName('co_overlay');
+		removeClass(selectOverlay[0],"closed");
+		addClass(selectOverlay[0],"open");
+		setTimeout(function(){ 
+		removeClass(selectOverlay[0],"open_modal");
+		removeClass(selectOverlay[0],"open");
+		addClass(selectOverlay[0],"closed");
+			
+		}, 100)
+		setTimeout(function(){ 
+			selectOverlay[0].style.display = "none";
+		}, 100);
+	
+}
+function openModal() {
+	var _item = this;
+	var currentItemHelpModal 	= _item.parentNode.getElementsByClassName("co_help_modal")[0];
+	
+	if (hasClass(currentItemHelpModal,"closed")) {	
+		addClass(currentItemHelpModal,"open");
+		removeClass(currentItemHelpModal,"closed");	
+		var selectOverlay = document.getElementById('co_select_<?php echo $this->selectFieldId; ?>').getElementsByClassName('co_overlay');
+			
+			selectOverlay[0].style.display = "block";
+
+			removeClass(selectOverlay[0],"closed");
+			addClass(selectOverlay[0],"open_modal");
+			selectOverlay[0].setAttribute("data-co-modal",currentItemHelpModal.getAttribute("data-co-modal"));
+		
+	}
+	
+}
+function controlSelectBox() {
+ 	var _item = this;
+  	var selectBox = document.getElementById('co_select_<?php echo $this->selectFieldId; ?>');
+
+	if (hasClass(selectBox,"closed")) {
+	    addClass(selectBox,"open");
+	    removeClass(selectBox,"closed");
+	} else {
+
+	    addClass(selectBox,"closed");
+	    removeClass(selectBox,"open");
+	    var selectField = document.getElementById('ctrl_<?php echo $this->selectFieldId; ?>');
+	    var selectVal = _item.getAttribute('data-co-select-value');
+	    for (var i = 0, j = selectField.options.length;i<j;i++){
+	    	if (null!==selectField.options[i].getAttribute('selected')) {
+	    		selectField.options[i].removeAttribute('selected');
+	    		selectBox.getElementById('co_select_<?php echo $this->selectFieldId; ?>_'+selectField.options[i].getAttribute('value')).removeClass('active');
+	    	
+		    };
+	    	if (selectVal==selectField.options[i].getAttribute('value')) {
+	    		selectBox.getElementById('co_select_<?php echo $this->selectFieldId; ?>_'+selectVal).addClass('active');
+	    		selectField.options[i].setAttribute('selected','selected');
+	    	};
+		}
+	    
+		var selectOverlay = document.getElementById('co_select_<?php echo $this->selectFieldId; ?>').getElementsByClassName('co_overlay');
+			
+			selectOverlay[0].style.display = "block";
+			removeClass(selectOverlay[0],"closed");
+			addClass(selectOverlay[0],"open");
+			setTimeout(function(){ 
+				removeClass(selectOverlay[0],"open");
+				addClass(selectOverlay[0],"closed");
+				
+			}, 100)
+			setTimeout(function(){ 
+				selectOverlay[0].style.display = "none";
+			}, 300);
+			
+	
+
+	}
+}
+
+  var selectItems = document.getElementById('co_select_<?php echo $this->selectFieldId; ?>').getElementsByTagName('li');
+  var selectOverlay = document.getElementById('co_select_<?php echo $this->selectFieldId; ?>').getElementsByClassName('co_overlay');
+
+  for (var i = 0, j = selectItems.length; i < j; i++) {
+  	var currentItem 			= selectItems[i];
+  	var currentItemClose 		= currentItem.getElementsByClassName("co_help_modal_close");
+  	var currentItemHelpButton 	= currentItem.getElementsByClassName("co_help");
+  	var currentItemImage 		= currentItem.getElementsByClassName("co_image");
+   
+    currentItemHelpButton[0].onclick  	= openModal;
+    currentItemClose[0].onclick  		= closeModal;
+    currentItemImage[0].onclick  		= controlSelectBox;
+    selectOverlay[0].onclick 			= closeModal;
+  }
+}
+co_select();
+
+</script>
+</div>

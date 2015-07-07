@@ -1,0 +1,50 @@
+/** 
+ * Extension for Contao Open Source CMS
+ *
+ * Copyright (C) 2015 Monique Hahnefeld
+ *
+ * @package codeowl_design_presets
+ * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
+ * @link    http://codeowl.org
+ * @license LGPLv3
+ *
+ * `-,-´
+ *	( )  codeowl.org
+ *************************/
+
+/* tl_co_presets be view */
+.co_presets_list_item {
+height:auto;float:left;width:100%;
+padding-top:6px;
+}
+.co_presets_list_item .co_tags {
+float:left;width:15%; 
+}
+.co_presets_list_item .co_tags_default,
+.co_presets_list_item .co_tags_access {
+	float:left;
+display:block;
+min-width: 20px;
+width:auto; 
+margin:0.5em; padding:0.4em;
+letter-spacing: 0.025em;
+}
+.co_presets_list_item .co_tags_default{
+	background:#666; color:#fff;
+}
+ .co_presets_list_item .co_tags_access{
+background:#ddd; color:#666;
+}
+.co_presets_list_item .co_image {
+float:left;width:20%; 
+}
+.co_presets_list_item .co_presets_info {
+float:left;width:55%;
+}
+.co_presets_list_item .co_presets_info h6,
+.co_presets_list_item .co_presets_info p{
+	margin:0;
+}
+.co_presets_list_item .co_presets_info p.co_presets_class{
+	color:#999;
+}

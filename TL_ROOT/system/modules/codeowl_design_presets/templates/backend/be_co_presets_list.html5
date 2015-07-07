@@ -1,0 +1,21 @@
+<div class="co_presets_list_item">
+	<div class="co_image">
+			<img src="<?php echo $this->image['path']; ?>" alt="<?php echo $this->name; ?>" width="<?php echo $this->image['width']; ?>" height="<?php echo $this->image['height']; ?>">	
+	</div>
+	<div class="co_tags">
+		<?php  if(count($this->tags_default)>0):?>
+		<span class="co_tags_default"><?php echo implode('</span><span class="co_tags_access">', $this->tags_default);?></span>
+		<?php  endif; ?>
+		<?php  if(count($this->tags_access)>0):?>
+		<span class="co_tags_access"><?php echo implode('</span><span class="co_tags_access">', $this->tags_access);?></span>
+		<?php  endif; ?>
+	</div>
+	<div class="co_presets_info">
+		<h6 ><?php echo $this->name; ?></h6>
+		<p class="co_presets_class"><?php echo $this->class; ?></p>
+		<p class="co_description"><?php echo $this->description; ?></p>
+		
+	</div>
+</div>	
+			
+		

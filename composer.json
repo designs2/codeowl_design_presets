@@ -1,0 +1,48 @@
+{
+    "name":"designs2/codeowl_design_presets",
+    "description":"Codeowl Design Presets",
+    "keywords":["contao", "foundation","framework","grid","system","zurb","responsive","codeowl"],
+    "type":"contao-module",
+    "license":"LGPL-3.0+",
+    "authors":[
+        {
+            "name":"Designs2",
+            "homepage":"https://designs2.de"
+        },
+        {
+            "name":"Monique Hahnefeld",
+            "homepage":"http://www.monique-hahnefeld.de"
+        }
+    ],
+    "support":{
+            "issues":"https://github.com/designs2/codeowl_design_presets/issues",
+            "wiki":"http://www.designs2.de/contao-erweiterungen/codeowl.html",
+            "source":"https://github.com/designs2/codeowl_design_presets"
+        },
+    "require":{
+        "php":">=5.3.2",
+        "contao/core":">=3.4.0,<4.0.0",
+        "contao-community-alliance/composer-installer": "*",
+        "designs2/codeowl_design_presets": ">=1.0.0,<2.0.0"
+    },
+     "replace": {
+        "contao-legacy/codeowl_fw_foundation": "self.version"
+    },
+    "autoload": {
+        "classmap":[""]
+         
+    },
+    "extra":{
+        "contao": {
+            "sources":{
+                "TL_ROOT/system/modules/codeowl_design_presets": "system/modules/codeowl_design_presets"
+            },
+         "userfiles": {
+            "TL_ROOT/files/theme": "themes"
+        },
+        "branch-alias": {
+                    "dev-master": "1.0.0"
+                }
+        }
+    }
+}
