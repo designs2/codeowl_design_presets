@@ -41,6 +41,7 @@ $GLOBALS['TL_CONFIG']['co_presets_breakpoints'] 	= array(
 														);
 $GLOBALS['TL_CONFIG']['co_grid_columns_size'] 	 	= '12';
 $GLOBALS['TL_CONFIG']['co_grid_prefix']  		 	= 'ftc';
+$GLOBALS['TL_CONFIG']['co_grid_glue']  		 		= '-';
 $GLOBALS['TL_CONFIG']['co_grid_breakpoints'] 	 	= 'small,medium,large,xlarge,xxlarge'; //ftc
 $GLOBALS['TL_CONFIG']['co_grid_classes'] 		 	= 'small,medium,large,xlarge,xxlarge,float_ftc,align,pull,push,offset'; //ftc
 $GLOBALS['TL_CONFIG']['co_grid_palette'] 			= '{breakpoint_legend},small,medium,large,xlarge,xxlarge;{classes_legend},float_ftc,align,pull,push,offset,custom;';

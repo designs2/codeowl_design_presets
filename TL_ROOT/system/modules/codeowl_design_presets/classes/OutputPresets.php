@@ -29,7 +29,7 @@ class OutputPresets
        
        foreach ($GridArr as $v) {
          if (isset($preset[$v])&&$preset[$v]!=='-') {
-            $co_grid[$v] = $v.'-'.$preset[$v];
+            $co_grid[$v] = $v.\Config::get('co_grid_glue').$preset[$v];
          }
        }
        $co_grid['columns']    = (count($co_grid) == 0)?'':'columns';
