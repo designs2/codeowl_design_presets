@@ -1,6 +1,6 @@
-#Codeowl Grid Control
+#Codeowl Design Presets
 
-Version 1.0.0 - RC1
+Version 1.0.1
 
 ##Requirements
 
@@ -17,7 +17,7 @@ Version 1.0.0 - RC1
 	
 ##Download on Github
 
-	https://github.com/designs2/codeowl_grid_control
+	https://github.com/designs2/codeowl_design_presets
 
 	
 ##Infos
