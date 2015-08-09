@@ -212,6 +212,16 @@ foreach (explode(',',Config::get('co_grid_classes')) as $field) {
 		$GLOBALS['TL_DCA']['tl_co_presets']['fields'][$field]['label']   = &$GLOBALS['TL_LANG']['tl_co_presets'][$field];
 }
 
+// `-,-´ Hook for the col size
+		if (isset($GLOBALS['TL_CO_HOOKS']['colSizeHook']) && is_array($GLOBALS['TL_CO_HOOKS']['colSizeHook']))
+		{
+			foreach ($GLOBALS['TL_CO_HOOKS']['colSizeHook'] as $callback)
+			{
+				$this->import($callback[0]);
+				$this->$callback[0]->$callback[1]();
+			}
+		}
+
 $GLOBALS['TL_DCA']['tl_co_presets']['fields']['small']['default'] 	= (string) Config::get('co_grid_columns_size');
 $GLOBALS['TL_DCA']['tl_co_presets']['fields']['small']['sql'] 		= "char(8) NOT NULL default '".(string) Config::get('co_grid_columns_size')."'";
 
