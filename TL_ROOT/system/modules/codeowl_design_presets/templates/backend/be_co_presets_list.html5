@@ -3,10 +3,10 @@
 			<img src="<?php echo $this->image['path']; ?>" alt="<?php echo $this->name; ?>" width="<?php echo $this->image['width']; ?>" height="<?php echo $this->image['height']; ?>">	
 	</div>
 	<div class="co_tags">
-		<?php  if(count($this->tags_default)>0):?>
+		<?php  if(is_array($this->tags_default)&&count($this->tags_default)>0):?>
 		<span class="co_tags_default"><?php echo implode('</span><span class="co_tags_access">', $this->tags_default);?></span>
 		<?php  endif; ?>
-		<?php  if(count($this->tags_access)>0):?>
+		<?php  if(is_array($this->tags_access)&&count($this->tags_access)>0):?>
 		<span class="co_tags_access"><?php echo implode('</span><span class="co_tags_access">', $this->tags_access);?></span>
 		<?php  endif; ?>
 	</div>
